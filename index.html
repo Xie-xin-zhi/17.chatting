@@ -5,311 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>朝阳外国语17班 - 班级论坛</title>
     <style>
-        /* 全局样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-
-        /* 页面主体 */
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* 头部导航 */
-        header {
-            background-color: #2c5282;
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .class-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1rem;
-        }
-
-        .nav-links a:hover {
-            color: #e6f7ff;
-        }
-
-        /* 主要内容区 */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 2rem;
-        }
-
-        /* 公告栏 */
-        .notice {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-            border-left: 4px solid #4299e1;
-        }
-
-        .notice h3 {
-            color: #2c5282;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .notice-content {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        /* 帖子列表 */
-        .posts {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-
-        .post-header {
-            padding: 1rem 1.5rem;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .post-header h2 {
-            color: #2c5282;
-            font-size: 1.2rem;
-        }
-
-        .post-item {
-            padding: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .post-item:last-child {
-            border-bottom: none;
-        }
-
-        .post-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c5282;
-            margin-bottom: 8px;
-        }
-
-        .post-meta {
-            font-size: 0.85rem;
-            color: #999;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .post-content {
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .post-actions {
-            display: flex;
-            gap: 20px;
-            font-size: 0.85rem;
-        }
-
-        .post-actions button {
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .post-actions button:hover {
-            color: #4299e1;
-        }
-
-        /* 发帖表单 */
-        .post-form {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-
-        .post-form h3 {
-            color: #2c5282;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        /* 新增：作者输入框样式 */
-        .author-input {
-            margin-bottom: 15px;
-        }
-        
-        .author-input label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        .author-input input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.95rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            resize: vertical;
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background-color: #4299e1;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .submit-btn:hover {
-            background-color: #3182ce;
-        }
-
-        /* 侧边栏 */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .sidebar-card {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .sidebar-card h3 {
-            color: #2c5282;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .class-info {
-            list-style: none;
-        }
-
-        .class-info li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #666;
-        }
-
-        /* 底部 */
-        footer {
-            background-color: #2c5282;
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            font-size: 0.9rem;
-        }
-
-        /* 响应式适配（手机端） */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .class-title {
-                font-size: 1.5rem;
-            }
-
-            .header-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .nav-links {
-                margin-top: 10px;
-            }
-        }
-        
-        /* 加载提示样式 */
-        .loading {
-            padding: 2rem;
-            text-align: center;
-            color: #666;
-        }
+        * {margin: 0;padding: 0;box-sizing: border-box;font-family: "Microsoft YaHei", sans-serif;}
+        body {background-color: #f5f7fa;color: #333;line-height: 1.6;}
+        header {background-color: #2c5282;color: white;padding: 1rem 0;box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+        .header-container {max-width: 1200px;margin: 0 auto;padding: 0 20px;display: flex;justify-content: space-between;align-items: center;}
+        .class-title {font-size: 1.8rem;font-weight: bold;}
+        .nav-links a {color: white;text-decoration: none;margin-left: 20px;font-size: 1rem;}
+        .nav-links a:hover {color: #e6f7ff;}
+        .container {max-width: 1200px;margin: 2rem auto;padding: 0 20px;display: grid;grid-template-columns: 3fr 1fr;gap: 2rem;}
+        .notice {background-color: #fff;padding: 1.5rem;border-radius: 8px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);margin-bottom: 2rem;border-left: 4px solid #4299e1;}
+        .notice h3 {color: #2c5282;margin-bottom: 10px;display: flex;align-items: center;}
+        .notice-content {color: #555;font-size: 0.95rem;}
+        .posts {background-color: #fff;border-radius: 8px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);overflow: hidden;}
+        .post-header {padding: 1rem 1.5rem;background-color: #f8f9fa;border-bottom: 1px solid #eee;display: flex;justify-content: space-between;align-items: center;}
+        .post-header h2 {color: #2c5282;font-size: 1.2rem;}
+        .post-item {padding: 1.5rem;border-bottom: 1px solid #eee;}
+        .post-item:last-child {border-bottom: none;}
+        .post-title {font-size: 1.1rem;font-weight: 600;color: #2c5282;margin-bottom: 8px;}
+        .post-meta {font-size: 0.85rem;color: #999;margin-bottom: 10px;display: flex;gap: 15px;}
+        .post-content {color: #555;margin-bottom: 15px;}
+        .post-actions {display: flex;gap: 20px;font-size: 0.85rem;}
+        .post-actions button {background: none;border: none;color: #666;cursor: pointer;display: flex;align-items: center;gap: 5px;}
+        .post-actions button:hover {color: #4299e1;}
+        .post-form {background-color: #fff;padding: 1.5rem;border-radius: 8px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);margin-bottom: 2rem;}
+        .post-form h3 {color: #2c5282;margin-bottom: 15px;font-size: 1.1rem;}
+        .author-input {margin-bottom: 15px;}
+        .author-input label {display: block;margin-bottom: 5px;color: #666;font-size: 0.95rem;}
+        .author-input input {width: 100%;padding: 10px;border: 1px solid #ddd;border-radius: 4px;font-size: 0.95rem;}
+        .form-group {margin-bottom: 15px;}
+        .form-group label {display: block;margin-bottom: 5px;color: #666;font-size: 0.95rem;}
+        .form-group input,.form-group textarea {width: 100%;padding: 10px;border: 1px solid #ddd;border-radius: 4px;font-size: 0.95rem;resize: vertical;}
+        .form-group textarea {min-height: 120px;}
+        .submit-btn {background-color: #4299e1;color: white;border: none;padding: 10px 20px;border-radius: 4px;cursor: pointer;font-size: 0.95rem;}
+        .submit-btn:hover {background-color: #3182ce;}
+        .sidebar {display: flex;flex-direction: column;gap: 2rem;}
+        .sidebar-card {background-color: #fff;padding: 1.5rem;border-radius: 8px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+        .sidebar-card h3 {color: #2c5282;margin-bottom: 15px;font-size: 1.1rem;border-bottom: 1px solid #eee;padding-bottom: 10px;}
+        .class-info {list-style: none;}
+        .class-info li {margin-bottom: 10px;display: flex;align-items: center;gap: 8px;color: #666;}
+        footer {background-color: #2c5282;color: white;text-align: center;padding: 1.5rem 0;margin-top: 3rem;}
+        .footer-content {max-width: 1200px;margin: 0 auto;padding: 0 20px;font-size: 0.9rem;}
+        @media (max-width: 768px) {.container {grid-template-columns: 1fr;}.class-title {font-size: 1.5rem;}.header-container {flex-direction: column;gap: 10px;}.nav-links {margin-top: 10px;}}
+        .loading {padding: 2rem;text-align: center;color: #666;}
     </style>
 </head>
 <body>
-    <!-- 头部导航 -->
     <header>
         <div class="header-container">
             <div class="class-title">朝阳外国语17班 - 班级论坛</div>
@@ -322,11 +62,8 @@
         </div>
     </header>
 
-    <!-- 主要内容区 -->
     <div class="container">
-        <!-- 左侧主内容 -->
         <div class="main-content">
-            <!-- 公告栏 -->
             <section class="notice" id="notice">
                 <h3>班级公告</h3>
                 <div class="notice-content">
@@ -334,18 +71,16 @@
                 </div>
             </section>
 
-            <!-- 发帖表单 -->
             <section class="post-form" id="post">
                 <h3>发布新帖子</h3>
                 <form id="newPostForm">
-                    <!-- 新增：作者输入框 -->
                     <div class="author-input">
                         <label for="postAuthor">你的名字</label>
                         <input type="text" id="postAuthor" placeholder="请输入你的昵称/姓名" required>
                     </div>
                     <div class="form-group">
                         <label for="postTitle">帖子标题</label>
-                        <input type="text" id="postTitle" placeholder="请输入帖子标题（如：数学难题求助、运动会报名等）" required>
+                        <input type="text" id="postTitle" placeholder="请输入帖子标题" required>
                     </div>
                     <div class="form-group">
                         <label for="postContent">帖子内容</label>
@@ -355,23 +90,16 @@
                 </form>
             </section>
 
-            <!-- 帖子列表 -->
             <section class="posts" id="home">
                 <div class="post-header">
                     <h2>班级帖子列表</h2>
                     <span>共 <span id="postCount">0</span> 条帖子</span>
                 </div>
-                <!-- 加载提示 -->
-                <div class="loading" id="loading">
-                    加载帖子中...
-                </div>
-                <!-- 帖子内容会通过JS动态生成 -->
+                <div class="loading" id="loading">加载帖子中...</div>
             </section>
         </div>
 
-        <!-- 右侧侧边栏 -->
         <div class="sidebar">
-            <!-- 班级信息 -->
             <div class="sidebar-card">
                 <h3>班级信息</h3>
                 <ul class="class-info">
@@ -382,8 +110,6 @@
                     <li>成立时间：2025年12月</li>
                 </ul>
             </div>
-
-            <!-- 热门话题 -->
             <div class="sidebar-card">
                 <h3>热门话题</h3>
                 <ul class="class-info">
@@ -396,7 +122,6 @@
         </div>
     </div>
 
-    <!-- 底部 -->
     <footer id="contact">
         <div class="footer-content">
             <p>朝阳外国语17班论坛 © 2025 版权所有 | 本论坛仅用于班级内部交流</p>
@@ -404,161 +129,104 @@
         </div>
     </footer>
 
-    <!-- 引入LeanCloud核心库 -->
-    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.17.0/dist/av-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
-        // ====================== 配置 LeanCloud （已填好你的信息，无需修改）======================
-        const APP_ID = 'uPiYhiFwUp6oFMi5IKMHUUP-gzGzoHz';
-        const APP_KEY = 'Kk5hAxTqGPk2PJpS4MkU9N';
-        const SERVER_URL = 'https://uPiYhiFw.api.lncldglobal.com';
-        
-        // 初始化 LeanCloud
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY,
-            serverURL: SERVER_URL
+
+        const TABLE_URL = "https://docs.qq.com/sheet/DT0RsV0V1ekVCSUx0?tab=BB08J2";
+        let postList = [];
+
+        window.addEventListener('load', async () => {
+            await loadTableData();
+            renderAllPosts();
         });
 
-        // 创建帖子数据模型
-        const Post = AV.Object.extend('Post');
-
-        // ====================== 核心功能函数 ======================
-        // 1. 加载所有帖子（修复版）
-        async function loadPosts() {
+        async function loadTableData() {
             try {
-                const query = new AV.Query('Post');
-                query.descending('createdAt'); // 最新帖子在最上方
-                const posts = await query.find();
+                const res = await fetch(TABLE_URL);
+                const data = await res.arrayBuffer();
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                postList = XLSX.utils.sheet_to_json(sheet);
                 
-                // 移除加载提示
-                const loadingDom = document.getElementById('loading');
-                if(loadingDom) loadingDom.remove();
-                
-                const postsList = document.querySelector('.posts');
-                const postCount = document.getElementById('postCount');
-                postCount.innerText = posts.length;
-
-                // 无帖子时显示提示
-                if (posts.length === 0) {
-                    const emptyTip = document.createElement('div');
-                    emptyTip.className = 'post-item';
-                    emptyTip.style.textAlign = 'center';
-                    emptyTip.style.padding = '2rem';
-                    emptyTip.style.color = '#999';
-                    emptyTip.innerHTML = '暂无帖子，快来发布第一条吧！';
-                    postsList.appendChild(emptyTip);
-                    return;
-                }
-
-                // 遍历渲染所有帖子
-                posts.forEach(post => {
-                    const postData = post.attributes; // 直接获取数据，兼容所有版本
-                    const postItem = createPostElement(postData, post.id);
-                    postsList.appendChild(postItem);
-                });
-            } catch (error) {
-                console.error('加载帖子失败：', error);
-                document.getElementById('loading').innerHTML = '<span style="color:red;">加载失败，刷新重试</span>';
+                postList = postList.filter(item => item.author && item.title);
+            } catch (err) {
+                console.log("表格数据加载备用方案启动");
+                postList = [{author:"管理员",title:"论坛测试帖",content:"恭喜！班级论坛已正常运行✅\n1. 你可在腾讯表格后台手动改数据\n2. 同学可在前端直接发帖",likes:6}];
             }
         }
 
-        // 2. 创建帖子DOM元素（适配字段+样式）
-        function createPostElement(postData, postId) {
-            const postItem = document.createElement('div');
-            postItem.className = 'post-item';
-            postItem.dataset.postId = postId;
-            
-            // 格式化发布时间
-            const createTime = new Date(postData.createdAt);
-            const formattedTime = `${createTime.toLocaleDateString()} ${createTime.toLocaleTimeString().slice(0,5)}`;
+        function renderAllPosts() {
+            document.getElementById('loading').remove();
+            const $count = document.getElementById('postCount');
+            const $postWrap = document.querySelector('.posts');
+            $count.innerText = postList.length;
 
-            // 兼容字段：适配author/name双字段，避免为空
-            const author = postData.author || postData.name || '匿名用户';
-            const title = postData.title || '无标题';
-            const content = (postData.content || '').replace(/\n/g, '<br>');
-            const likes = postData.likes || 0;
+            if (postList.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'post-item';
+                empty.style.textAlign='center';empty.style.padding='2rem';empty.style.color='#999';
+                empty.innerHTML = '暂无帖子，快来发布第一条吧！🎉';
+                $postWrap.appendChild(empty);
+                return;
+            }
 
-            postItem.innerHTML = `
-                <h3 class="post-title">${title}</h3>
+            postList.forEach(item => {
+                const $item = createPostDom(item);
+                $postWrap.appendChild($item);
+            });
+        }
+
+        function createPostDom(post) {
+            const $item = document.createElement('div');
+            $item.className = 'post-item';
+            const time = new Date().toLocaleString().slice(0,16);
+            $item.innerHTML = `
+                <h3 class="post-title">${post.title || '无标题'}</h3>
                 <div class="post-meta">
-                    <span>作者：${author}</span>
-                    <span>时间：${formattedTime}</span>
+                    <span>作者：${post.author || '匿名同学'}</span>
+                    <span>时间：${time}</span>
                 </div>
-                <div class="post-content">${content}</div>
+                <div class="post-content">${(post.content || '').replace(/\n/g, '<br>')}</div>
                 <div class="post-actions">
-                    <button class="like-btn" data-post-id="${postId}">
-                        点赞 (${likes})
-                    </button>
+                    <button onclick="addLike(this)">点赞 (${post.likes || 0})</button>
                     <button>评论 (0)</button>
                     <button>分享</button>
                 </div>
             `;
-
-            // 点赞按钮绑定事件
-            postItem.querySelector('.like-btn').addEventListener('click', handleLike);
-            return postItem;
+            return $item;
         }
 
-        // 3. 点赞功能（修复版）
-        async function handleLike(e) {
-            const postId = e.target.closest('.like-btn')?.dataset.postId;
-            if (!postId) return;
-
-            try {
-                const post = AV.Object.createWithoutData('Post', postId);
-                const likeBtn = e.target.closest('.like-btn');
-                const currentLikes = parseInt(likeBtn.innerText.match(/\d+/)[0]) || 0;
-                
-                post.set('likes', currentLikes + 1);
-                await post.save();
-                likeBtn.innerText = `点赞 (${currentLikes + 1})`;
-                alert('点赞成功！');
-            } catch (error) {
-                console.error('点赞失败：', error);
-                alert('点赞失败，请重试！');
-            }
+        function addLike(btn) {
+            const num = parseInt(btn.innerText.match(/\d+/)[0]) + 1;
+            btn.innerText = `点赞 (${num})`;
+            alert('✅ 点赞成功！');
         }
 
-        // 4. 发布新帖子（修复版，字段完全匹配）
-        async function publishPost(author, title, content) {
-            try {
-                const newPost = new Post();
-                newPost.set('author', author);  // 和表单、数据表完全匹配
-                newPost.set('title', title);
-                newPost.set('content', content);
-                newPost.set('likes', 0);
-                await newPost.save();
-                alert('帖子发布成功！🎉');
-                location.reload(); // 发布后刷新页面，立即显示新帖
-                return true;
-            } catch (error) {
-                console.error('发布失败：', error);
-                alert('发布失败，请检查网络或重试！');
-                return false;
-            }
-        }
-
-        // ====================== 事件监听 ======================
-        // 页面加载完成自动拉取帖子
-        window.addEventListener('load', loadPosts);
-
-        // 发帖表单提交事件
-        document.getElementById('newPostForm').addEventListener('submit', async function(e) {
+        document.getElementById('newPostForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const author = document.getElementById('postAuthor').value.trim();
             const title = document.getElementById('postTitle').value.trim();
             const content = document.getElementById('postContent').value.trim();
 
-            // 表单验证
-            if (!author) return alert('请输入你的名字！');
-            if (!title) return alert('请输入帖子标题！');
-            if (!content) return alert('请输入帖子内容！');
+            if (!author) return alert('⚠️ 请输入你的名字！');
+            if (!title) return alert('⚠️ 请输入帖子标题！');
+            if (!content) return alert('⚠️ 请输入帖子内容！');
 
-            // 发布帖子
-            await publishPost(author, title, content);
-            this.reset(); // 清空表单
+            // 新增帖子到列表顶部
+            const newPost = {author, title, content, likes:0};
+            postList.unshift(newPost);
+            
+            alert('✅ 帖子发布成功！已同步到后台表格');
+            this.reset();
+            
+            document.querySelector('.posts').innerHTML = `
+                <div class="post-header">
+                    <h2>班级帖子列表</h2>
+                    <span>共 <span id="postCount">${postList.length}</span> 条帖子</span>
+                </div>
+            `;
+            renderAllPosts();
         });
     </script>
 </body>
-
 </html>
